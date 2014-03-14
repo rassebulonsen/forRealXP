@@ -7,17 +7,24 @@ package view;
 import backend.DummyBackend;
 import java.util.HashMap;
 import electivexp.ElectiveManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 /**
  *
  * @author Thomas
  */
 public class Factory {
+    ElectiveManager manager = lookupNewSessionBeanRemote();
     private static Factory instance = null;
     
     private final HashMap<String, Command> commands = new HashMap<>();
 
-    private ElectiveManager manager = new DummyBackend();
+//    private ElectiveManager manager = new DummyBackend();ct
+    
     
     public Factory() {
             commands.put("main", new TargetCommand("main.jsp"));
@@ -45,5 +52,16 @@ public class Factory {
     public void setManager(ElectiveManager manager) {
         this.manager = manager;
     }
-        
+
+    private ElectiveManager lookupNewSessionBeanRemote() {
+        try {
+            Context c = new InitialContext();
+            return (ElectiveManager) c.lookup("java:global/BackEnd2/NewSessionBean!electivexp.ElectiveManager");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+       
+    
 }

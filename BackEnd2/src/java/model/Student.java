@@ -40,15 +40,15 @@ public class Student implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "STUID")
-    private BigDecimal stuid;
+    private Integer stuid;
     @Column(name = "FIRSTPRI1ELECTIVESUBJID")
-    private BigInteger firstpri1electivesubjid;
+    private Integer firstpri1electivesubjid;
     @Column(name = "FIRSTPRI2ELECTIVESUBJID")
-    private BigInteger firstpri2electivesubjid;
+    private Integer firstpri2electivesubjid;
     @Column(name = "SECONDPRI1ELECTIVESUBJID")
-    private BigInteger secondpri1electivesubjid;
+    private Integer secondpri1electivesubjid;
     @Column(name = "SECONDPRI2ELECTIVESUBJID")
-    private BigInteger secondpri2electivesubjid;
+    private Integer secondpri2electivesubjid;
     @JoinColumn(name = "STUID", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Person person;
@@ -56,47 +56,47 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(BigDecimal stuid) {
+    public Student(Integer stuid) {
         this.stuid = stuid;
     }
 
-    public BigDecimal getStuid() {
+    public Integer getStuid() {
         return stuid;
     }
 
-    public void setStuid(BigDecimal stuid) {
+    public void setStuid(Integer stuid) {
         this.stuid = stuid;
     }
 
-    public BigInteger getFirstpri1electivesubjid() {
+    public Integer getFirstpri1electivesubjid() {
         return firstpri1electivesubjid;
     }
 
-    public void setFirstpri1electivesubjid(BigInteger firstpri1electivesubjid) {
+    public void setFirstpri1electivesubjid(Integer firstpri1electivesubjid) {
         this.firstpri1electivesubjid = firstpri1electivesubjid;
     }
 
-    public BigInteger getFirstpri2electivesubjid() {
+    public Integer getFirstpri2electivesubjid() {
         return firstpri2electivesubjid;
     }
 
-    public void setFirstpri2electivesubjid(BigInteger firstpri2electivesubjid) {
+    public void setFirstpri2electivesubjid(Integer firstpri2electivesubjid) {
         this.firstpri2electivesubjid = firstpri2electivesubjid;
     }
 
-    public BigInteger getSecondpri1electivesubjid() {
+    public Integer getSecondpri1electivesubjid() {
         return secondpri1electivesubjid;
     }
 
-    public void setSecondpri1electivesubjid(BigInteger secondpri1electivesubjid) {
+    public void setSecondpri1electivesubjid(Integer secondpri1electivesubjid) {
         this.secondpri1electivesubjid = secondpri1electivesubjid;
     }
 
-    public BigInteger getSecondpri2electivesubjid() {
+    public Integer getSecondpri2electivesubjid() {
         return secondpri2electivesubjid;
     }
 
-    public void setSecondpri2electivesubjid(BigInteger secondpri2electivesubjid) {
+    public void setSecondpri2electivesubjid(Integer secondpri2electivesubjid) {
         this.secondpri2electivesubjid = secondpri2electivesubjid;
     }
 

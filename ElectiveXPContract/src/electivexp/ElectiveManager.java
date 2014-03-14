@@ -8,11 +8,14 @@ import electivexp.dto.ElectiveSubjectSummary;
 import electivexp.dto.PrioritiesInfoDTO;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Thomas
  */
+
+@Remote
 public interface ElectiveManager {
     
     void makeChoise(int stuId, int firstPri1ElectiveSubjID,int firstPri2ElectiveSubjID, int second1ElectiveSubjID, int second2Pri2ElectiveSubjID);

@@ -41,7 +41,7 @@ public class Electivesubject implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SUBJECTID")
-    private BigDecimal subjectid;
+    private Integer subjectid;
     @Size(max = 20)
     @Column(name = "NAME")
     private String name;
@@ -62,15 +62,15 @@ public class Electivesubject implements Serializable {
     public Electivesubject() {
     }
 
-    public Electivesubject(BigDecimal subjectid) {
+    public Electivesubject(Integer subjectid) {
         this.subjectid = subjectid;
     }
 
-    public BigDecimal getSubjectid() {
+    public Integer getSubjectid() {
         return subjectid;
     }
 
-    public void setSubjectid(BigDecimal subjectid) {
+    public void setSubjectid(Integer subjectid) {
         this.subjectid = subjectid;
     }
 
