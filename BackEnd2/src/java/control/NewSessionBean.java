@@ -26,7 +26,7 @@ public class NewSessionBean implements ElectiveManager {
     @PersistenceContext(unitName = "BackEnd2PU")
     private EntityManager em;
 
-        private ArrayList<Electivesubject> electivSubjects = new ArrayList<>();
+        private ArrayList<ElectiveSubjectSummary> electivSubjects = new ArrayList<>();
 
     @Override
     public void makeChoise(int stuId, int firstPri1ElectiveSubjID, int firstPri2ElectiveSubjID, int second1ElectiveSubjID, int second2Pri2ElectiveSubjID) {
@@ -47,13 +47,13 @@ public class NewSessionBean implements ElectiveManager {
 
     @Override
     public void savePools(ArrayList<Integer> poolAArray, ArrayList<Integer> poolBArray) {
-//        
+        
 //        for(int a = 0;a<poolAArray.size();a++)
 //        {
 //             int fag=0;
 //            for(int i =0;i< electivSubjects.size();i++)
 //            {
-//                if(poolAArray.get(a)==electivSubjects.get(i).getSubjectId())
+//                if(poolAArray.get(a)==electivSubjects.get(i).getId())
 //                {
 //                    fag=i;
 //                }
@@ -65,7 +65,7 @@ public class NewSessionBean implements ElectiveManager {
 //            int fag=0;
 //            for(int i =0;i< electivSubjects.size();i++)
 //            {
-//                if(poolBArray.get(b)==electivSubjects.get(i).getSubjectId())
+//                if(poolBArray.get(b)==electivSubjects.get(i).getId())
 //                {
 //                    fag=i;
 //                }
