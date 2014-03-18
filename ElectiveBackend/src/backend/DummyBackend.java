@@ -213,4 +213,14 @@ public class DummyBackend implements ElectiveManager{
         }
         return DummyBankAssembler.createPriorityDTO(priorities,electivSubjects);    
     }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getPoolASubjects() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getPoolBSubjects() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

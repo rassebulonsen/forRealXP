@@ -8,12 +8,14 @@ import electivexp.ElectiveManager;
 import electivexp.dto.ElectiveSubjectSummary;
 import electivexp.dto.PrioritiesInfoDTO;
 import static control.ElectiveAssembler.*;
+import electivexp.dto.PoolSubjectSummary;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import model.Electivesubject;
+import model.Pool;
 import model.Student;
 
 /**
@@ -84,6 +86,18 @@ public class NewSessionBean implements ElectiveManager {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getPoolASubjects() {
+        Pool poolA = em.find(Pool.class, "A");
+        return createElectiveSummaries(poolA.getElectivesubjectCollection());
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getPoolBSubjects() {
+        Pool poolb = em.find(Pool.class, "B");
+        return createElectiveSummaries(poolb.getElectivesubjectCollection());
     }
 
 }

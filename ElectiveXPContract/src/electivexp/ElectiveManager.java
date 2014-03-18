@@ -5,6 +5,7 @@
 package electivexp;
 
 import electivexp.dto.ElectiveSubjectSummary;
+import electivexp.dto.PoolSubjectSummary;
 import electivexp.dto.PrioritiesInfoDTO;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,4 +23,6 @@ public interface ElectiveManager {
     Collection<ElectiveSubjectSummary> getSubjects();
     void savePools(ArrayList<Integer> poolAArray,ArrayList<Integer> poolBArray);
     ArrayList<PrioritiesInfoDTO> getStudentPoolSatisfaction(ArrayList<Integer> poolAArray,ArrayList<Integer> poolBArray);
+    Collection<ElectiveSubjectSummary> getPoolASubjects();
+    Collection<ElectiveSubjectSummary> getPoolBSubjects();
 }

@@ -33,6 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Electivesubject.findAll", query = "SELECT e FROM Electivesubject e"),
     @NamedQuery(name = "Electivesubject.findBySubjectid", query = "SELECT e FROM Electivesubject e WHERE e.subjectid = :subjectid"),
     @NamedQuery(name = "Electivesubject.findByName", query = "SELECT e FROM Electivesubject e WHERE e.name = :name"),
+    
+    @NamedQuery(name = "Electivesubject.findByPoolA", query = "SELECT e FROM Electivesubject e WHERE e.name = :name"),
+    
     @NamedQuery(name = "Electivesubject.findByDescription", query = "SELECT e FROM Electivesubject e WHERE e.description = :description")})
 public class Electivesubject implements Serializable {
     private static final long serialVersionUID = 1L;

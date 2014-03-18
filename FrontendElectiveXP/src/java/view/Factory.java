@@ -30,6 +30,8 @@ public class Factory {
             commands.put("main", new TargetCommand("main.jsp"));
             commands.put("subject", new FirstSelectionCommand("round1.jsp"));
             commands.put("makeChoises_command", new MakeChoisesCommand("round1End.jsp"));
+            commands.put("makeChoises2_Command", new MakeChoises2Command("round2End.jsp"));
+            commands.put("make_pool_subject_selections", new SecondSelectionCommand("round2.jsp"));
             commands.put("makePool", new setupPoolCommand("pool.jsp"));
     }
     

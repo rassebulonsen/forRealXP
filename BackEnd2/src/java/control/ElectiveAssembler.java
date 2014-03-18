@@ -8,6 +8,7 @@ import electivexp.dto.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Electivesubject;
+import model.Pool;
 import model.Student;
 
 /**
@@ -36,8 +37,7 @@ public class ElectiveAssembler {
         for (Electivesubject subject : subjects) {
             summaries.add(createElectiveSummary(subject));
         }
-        
         return summaries;
-        
     }
+    
 }
