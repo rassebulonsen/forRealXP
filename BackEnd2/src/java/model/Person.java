@@ -36,6 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email"),
     @NamedQuery(name = "Person.findByPassword", query = "SELECT p FROM Person p WHERE p.password = :password")})
 public class Person implements Serializable {
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
+    private StudentRound2 studentRound2;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -157,6 +159,14 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "model.Person[ id=" + id + " ]";
+    }
+
+    public StudentRound2 getStudentRound2() {
+        return studentRound2;
+    }
+
+    public void setStudentRound2(StudentRound2 studentRound2) {
+        this.studentRound2 = studentRound2;
     }
     
 }

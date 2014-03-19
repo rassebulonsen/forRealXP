@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
 import model.Electivesubject;
 import model.Pool;
 import model.Student;
+import model.StudentRound2;
 
 /**
  *
@@ -277,4 +278,15 @@ public class NewSessionBean implements ElectiveManager {
         }
         return false;
     }
+
+    @Override
+    public void makeSecondChoise(int stuId, int firstPriPoolAElectiveSubjID, int secondPriPoolAElectiveSubjID, int firstPriPoolBElectiveSubjID, int secondPriPoolBElectiveSubjID) {
+//            StudentRound2 stu = em.find(StudentRound2.class, stuId);
+//            stu.setFirstpripoolaelectivesubjid(firstPriPoolAElectiveSubjID);
+//            stu.setSecondpripoolaelectivesubjid(secondPriPoolAElectiveSubjID);
+//            stu.setFirstpripoolb1electivesubjid(firstPriPoolBElectiveSubjID);
+//            stu.setSecondpripoolbelectivesubjid(secondPriPoolBElectiveSubjID);
+            StudentRound2 stu = new StudentRound2(stuId, firstPriPoolAElectiveSubjID, secondPriPoolAElectiveSubjID, firstPriPoolBElectiveSubjID, secondPriPoolBElectiveSubjID, null);
+            em.persist(stu);
+        }
 }

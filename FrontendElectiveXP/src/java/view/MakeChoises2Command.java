@@ -47,7 +47,7 @@ class MakeChoises2Command extends TargetCommand{
         String secondPriBSelectedSubject = request.getParameter("secondpriB");
         int secondPriBSelectedSubjectINT = Integer.parseInt(secondPriBSelectedSubject);
         
-        Factory.getInstance().getManager().makeChoise(2, firstPriASelectedSubjectINT, firstPriBSelectedSubjectINT, secondPriASelectedSubjectINT, secondPriBSelectedSubjectINT);
+        Factory.getInstance().getManager().makeSecondChoise(2, firstPriASelectedSubjectINT, secondPriASelectedSubjectINT, firstPriBSelectedSubjectINT, secondPriBSelectedSubjectINT);
         
         
         

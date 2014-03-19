@@ -25,4 +25,6 @@ public interface ElectiveManager {
     ArrayList<PrioritiesInfoDTO> getStudentPoolSatisfaction(ArrayList<Integer> poolAArray,ArrayList<Integer> poolBArray);
     Collection<ElectiveSubjectSummary> getPoolASubjects();
     Collection<ElectiveSubjectSummary> getPoolBSubjects();
+    
+    void makeSecondChoise(int stuId, int firstPriPoolAElectiveSubjID,int secondPriPoolAElectiveSubjID, int firstPriPoolBElectiveSubjID, int secondPriPoolBElectiveSubjID);
 }
