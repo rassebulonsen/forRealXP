@@ -5,6 +5,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -45,6 +46,7 @@ public class Pool implements Serializable {
 
     public Pool(String poolname) {
         this.poolname = poolname;
+        //electivesubjectCollection = new ArrayList<>();
     }
 
     public String getPoolname() {
@@ -87,6 +89,10 @@ public class Pool implements Serializable {
     @Override
     public String toString() {
         return "model.Pool[ poolname=" + poolname + " ]";
+    }
+
+    public void addSubject(Electivesubject es) {
+       electivesubjectCollection.add(es);
     }
     
 }

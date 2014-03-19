@@ -4,11 +4,13 @@
  */
 package electivexp.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Thomas
  */
-public class StudentInfoDTO {
+public class StudentInfoDTO implements Serializable {
 
     private int stuId;
     private String fName;
@@ -28,6 +30,23 @@ public class StudentInfoDTO {
         this.secondPri2ElectiveSubjName = secondPri2ElectiveSubjID;
     }
 
+    public void setFirstPri1ElectiveSubjName(String firstPri1ElectiveSubjName) {
+        this.firstPri1ElectiveSubjName = firstPri1ElectiveSubjName;
+    }
+
+    public void setFirstPri2ElectiveSubjName(String firstPri2ElectiveSubjName) {
+        this.firstPri2ElectiveSubjName = firstPri2ElectiveSubjName;
+    }
+
+    public void setSecondPri1ElectiveSubjName(String secondPri1ElectiveSubjName) {
+        this.secondPri1ElectiveSubjName = secondPri1ElectiveSubjName;
+    }
+
+    public void setSecondPri2ElectiveSubjName(String secondPri2ElectiveSubjName) {
+        this.secondPri2ElectiveSubjName = secondPri2ElectiveSubjName;
+    }
+    
+
     public String getFirstPri1ElectiveSubjName() {
         return firstPri1ElectiveSubjName;
     }
@@ -43,8 +62,6 @@ public class StudentInfoDTO {
     public String getSecondPri2ElectiveSubjName() {
         return secondPri2ElectiveSubjName;
     }
-
-    
 
     public int getStuId() {
         return stuId;

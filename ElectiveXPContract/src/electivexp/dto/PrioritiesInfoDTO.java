@@ -4,13 +4,14 @@
  */
 package electivexp.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Thomas
  */
-public class PrioritiesInfoDTO {
+public class PrioritiesInfoDTO implements Serializable {
     private String name;
     ArrayList <StudentInfoDTO> students = new ArrayList<>();
     

@@ -8,7 +8,7 @@ package test;
 import backend.DummyBackend;
 import electivexp.dto.PrioritiesInfoDTO;
 import model.Priorities;
-import model.Pool;
+import model.PoolS;
 import java.util.ArrayList;
 import model.ElectiveSubject;
 import model.Teacher;
@@ -46,13 +46,13 @@ public class Userstory4Test {
     
     @Test
     public void makePoolTest() {
-        Pool pool = new Pool();
+        PoolS pool = new PoolS();
         assertNotNull(pool);
     }
     
     @Test
     public void addSubjectToPoolTest() {
-        Pool pool = new Pool();
+        PoolS pool = new PoolS();
         Teacher t1 = new Teacher(1, "Torben", "?", 111, "tor@cph.dk", "cocio2013");
         ElectiveSubject es = new ElectiveSubject(7,"C#","C Sharp", t1);
         pool.addSubject(es);

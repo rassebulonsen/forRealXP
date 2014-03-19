@@ -15,5 +15,6 @@
         <h1>Start up Page</h1>
         <a href="FrontController?command=subject"> Round 1</a>
         <p><a href="FrontController?command=makePool"> make pools</a></p>
+        <a href="FrontController?command=make_pool_subject_selections"> Round 2</a>
     </body>
 </html>

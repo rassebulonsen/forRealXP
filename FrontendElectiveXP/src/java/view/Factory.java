@@ -4,7 +4,6 @@
  */
 package view;
 
-import backend.DummyBackend;
 import java.util.HashMap;
 import electivexp.ElectiveManager;
 import java.util.logging.Level;

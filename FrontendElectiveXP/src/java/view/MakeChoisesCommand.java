@@ -3,16 +3,13 @@
  * and open the template in the editor.
  */
 package view;
-import backend.DummyBackend;
 import electivexp.dto.ElectiveSubjectSummary;
 
-import electivexp.dto.StudentFirstRoundDetail;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 
 /**

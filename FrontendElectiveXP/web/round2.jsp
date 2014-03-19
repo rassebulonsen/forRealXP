@@ -4,6 +4,7 @@
     Author     : Rasmus
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,8 +21,8 @@
             <input type="hidden" name="command" value="MakeChoises2_Command">
             <div>
                 <h2>Pool A</h2>
-                <c:forEach items="${poolA}" var="poolA">
-                    <p>Subject name: ${poolA.name}. Subject id: ${poolA.id}</p>
+                <c:forEach items="${PoolA}" var="pa">
+                    <p>Subject name: ${pa.name}. Subject id: ${pa.id}</p>
                 </c:forEach>
                 <p style="display: inline">First priority(A)</p>
                 <input type="text" name="firstpriA" unique="currency" onkeypress="return onlyNumbers();">
@@ -30,7 +31,7 @@
             </div>
             <div>
                 <h2>Pool B</h2>
-                <c:forEach items="${poolB}" var="poolB">
+                <c:forEach items="${PoolB}" var="poolB">
                     <p>Subject name: ${poolB.name}. Subject id: ${poolB.id}</p>
                 </c:forEach>
                 <p style="display: inline">First priority(B)</p>

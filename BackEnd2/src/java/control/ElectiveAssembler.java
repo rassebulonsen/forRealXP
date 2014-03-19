@@ -39,5 +39,17 @@ public class ElectiveAssembler {
         }
         return summaries;
     }
-    
+    public static StudentInfoDTO createStudentInfoDTO(Student student)
+    {
+        if (student == null) return null;
+        return new StudentInfoDTO(
+                student.getStuid(),
+                student.getPerson().getFname(), 
+                student.getPerson().getLname(), 
+                student.getFirstpri1electivesubjid()+"", 
+                student.getFirstpri2electivesubjid()+"", 
+                student.getSecondpri1electivesubjid()+"", 
+                student.getSecondpri2electivesubjid()+""
+                );
+    }
 }

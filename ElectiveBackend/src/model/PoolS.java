@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Kristijan
  */
-public class Pool {
+public class PoolS {
 
     //private ArrayList<ElectiveSubject> subjects = new ArrayList<>();
     private Map<Integer,ElectiveSubject> subjects = new HashMap<>();

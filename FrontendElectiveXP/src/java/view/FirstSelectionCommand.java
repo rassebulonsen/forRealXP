@@ -4,11 +4,7 @@
  */
 package view;
 
-import backend.DummyBackend;
-import electivexp.dto.ElectiveSubjectSummary;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import model.ElectiveSubject;
 
 /**
  *

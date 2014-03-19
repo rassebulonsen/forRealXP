@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import model.ElectiveSubject;
 import model.Person;
-import model.Pool;
+import model.PoolS;
 import model.Priorities;
 import model.Student;
 import model.Teacher;
@@ -32,8 +32,8 @@ public class DummyBackend implements ElectiveManager{
     }
     
 //    private ArrayList<Student> students = new ArrayList<>();
-    private Pool poolA;
-    private Pool poolB;
+    private PoolS poolA;
+    private PoolS poolB;
     
     Teacher t1 = new Teacher(1, "Torben", "?", 111, "tor@cph.dk", "cocio2013");
     Teacher t2 = new Teacher(80, "Peter", "Lorentzen", 113, "pelo@cph.dk", "11111");
@@ -62,8 +62,8 @@ public class DummyBackend implements ElectiveManager{
         electivSubjects.add(new ElectiveSubject(11, "Games", "Get your Android", t2));
         electivSubjects.add(new ElectiveSubject(12, "Databases", "Get your Android", t2));
         electivSubjects.add(new ElectiveSubject(13, "Mordern Languages", "Get your Android", t2));
-        poolA = new Pool();
-        poolB = new Pool();
+        poolA = new PoolS();
+        poolB = new PoolS();
     }
 
     @Override
@@ -110,7 +110,7 @@ public class DummyBackend implements ElectiveManager{
 
     @Override
     public ArrayList<PrioritiesInfoDTO> getStudentPoolSatisfaction(ArrayList<Integer> poolAArray, ArrayList<Integer> poolBArray) {
-        Pool poolA = new Pool();
+        PoolS poolA = new PoolS();
         for(int a = 0;a<poolAArray.size();a++)
         {
             int fag=0;
@@ -123,7 +123,7 @@ public class DummyBackend implements ElectiveManager{
             }
             poolA.addSubject(electivSubjects.get(fag));
         }
-        Pool poolB = new Pool();
+        PoolS poolB = new PoolS();
         for(int b = 0;b<poolBArray.size();b++)
         {
             int fag=0;
