@@ -38,6 +38,32 @@ class MakeChoisesCommand extends TargetCommand{
         
         boolean isTheIdsInTheDB = Factory.getInstance().getManager().checkIfElectiveSubjectsAreInDB(firstPri1SelectedSubjectINT, firstPri2SelectedSubjectINT, secondPri1SelectedSubjectINT, secondPri2SelectedSubjectINT);
         
+        boolean isThereSameIds = false;
+        if(firstPri1SelectedSubject.equals(firstPri2SelectedSubject)
+           || firstPri1SelectedSubject.equals(secondPri1SelectedSubject)
+           || firstPri1SelectedSubject.equals(secondPri2SelectedSubject)  
+                ){
+            isThereSameIds = true;
+        }
+        if(firstPri2SelectedSubject.equals(firstPri1SelectedSubject)
+           || firstPri2SelectedSubject.equals(secondPri1SelectedSubject)
+           || firstPri2SelectedSubject.equals(secondPri2SelectedSubject)  
+                ){
+            isThereSameIds = true;
+        }
+        if(secondPri1SelectedSubject.equals(firstPri1SelectedSubject)
+           || secondPri1SelectedSubject.equals(firstPri2SelectedSubject)
+           || secondPri1SelectedSubject.equals(secondPri2SelectedSubject)  
+                ){
+            isThereSameIds = true;
+        }
+        if(secondPri2SelectedSubject.equals(firstPri1SelectedSubject)
+           || secondPri2SelectedSubject.equals(firstPri2SelectedSubject)
+           || secondPri2SelectedSubject.equals(secondPri1SelectedSubject)  
+                ){
+            isThereSameIds = true;
+        }
+        if(!isThereSameIds){
         if(isTheIdsInTheDB){
         
         Factory.getInstance().getManager().makeChoise(2, firstPri1SelectedSubjectINT, firstPri2SelectedSubjectINT, secondPri1SelectedSubjectINT, secondPri2SelectedSubjectINT);
@@ -92,6 +118,10 @@ class MakeChoisesCommand extends TargetCommand{
         }else{
             request.setAttribute("lol" , 
   "You have chosen some id's that are not in the list, please go back and chose some id's that exists in table .....");
+        }
+        }else{
+            request.setAttribute("lol" , 
+  "Some of the id's are the same, please go back and make new choises .....");
         }
         return super.execute(request);
     }
