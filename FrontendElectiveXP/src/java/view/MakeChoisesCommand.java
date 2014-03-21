@@ -24,17 +24,6 @@ class MakeChoisesCommand extends TargetCommand{
     @Override
     public String execute(HttpServletRequest request) {
         
- 
-        
-//        try {
-//            int first = Integer.parseInt(request.getParameter("firstpri1"));
-//            int second = Integer.parseInt(request.getParameter("firstpri1"));
-//            int third = Integer.parseInt(request.getParameter("firstpri1"));
-//            int fourth = Integer.parseInt(request.getParameter("firstpri1"));
-//        } catch (Exception e) {
-//        }
-        
-        
         String firstPri1SelectedSubject = request.getParameter("firstpri1");
         int firstPri1SelectedSubjectINT = Integer.parseInt(firstPri1SelectedSubject);
         
@@ -47,9 +36,11 @@ class MakeChoisesCommand extends TargetCommand{
         String secondPri2SelectedSubject = request.getParameter("secondpri2");
         int secondPri2SelectedSubjectINT = Integer.parseInt(secondPri2SelectedSubject);
         
-        Factory.getInstance().getManager().makeChoise(10, firstPri1SelectedSubjectINT, firstPri2SelectedSubjectINT, secondPri1SelectedSubjectINT, secondPri2SelectedSubjectINT);
+        boolean isTheIdsInTheDB = Factory.getInstance().getManager().checkIfElectiveSubjectsAreInDB(firstPri1SelectedSubjectINT, firstPri2SelectedSubjectINT, secondPri1SelectedSubjectINT, secondPri2SelectedSubjectINT);
         
+        if(isTheIdsInTheDB){
         
+        Factory.getInstance().getManager().makeChoise(2, firstPri1SelectedSubjectINT, firstPri2SelectedSubjectINT, secondPri1SelectedSubjectINT, secondPri2SelectedSubjectINT);
         
 //        get subject names:
         
@@ -98,6 +89,10 @@ class MakeChoisesCommand extends TargetCommand{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        }else{
+            request.setAttribute("lol" , 
+  "You have chosen some id's that are not in the list, please go back and chose some id's that exists in table .....");
+        }
         return super.execute(request);
     }
     

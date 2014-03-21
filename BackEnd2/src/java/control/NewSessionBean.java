@@ -314,4 +314,41 @@ public class NewSessionBean implements ElectiveManager {
             stu.setSecondpripoolbelectivesubjid(secondPriPoolBElectiveSubjID);
         }
     }
+
+    @Override
+    public boolean checkIfElectiveSubjectsAreInDB(int firstId, int secondId, int thirdId, int fourthId) {
+        boolean isTheIdsInDB = false;
+        boolean first = false;
+        boolean second = false;
+        boolean third = false;
+        boolean fourth = false;
+        
+        Collection<Electivesubject> electiveSubjects = em.createNamedQuery("Electivesubject.findAll").getResultList();
+        
+        for(Electivesubject electiveSubject : electiveSubjects)
+        {
+            if(electiveSubject.getSubjectid() == firstId)
+            {
+                first = true;
+            }
+            if(electiveSubject.getSubjectid() == secondId)
+            {
+                second = true;
+            }
+            if(electiveSubject.getSubjectid() == thirdId)
+            {
+                third = true;
+            }
+            if(electiveSubject.getSubjectid() == fourthId)
+            {
+                fourth = true;
+            }
+        }
+        
+        if(first && second && third && fourth){
+            isTheIdsInDB = true;
+        }
+        
+        return isTheIdsInDB;
+    }
 }

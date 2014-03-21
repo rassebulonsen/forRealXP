@@ -20,6 +20,9 @@ import javax.ejb.Remote;
 public interface ElectiveManager {
     
     void makeChoise(int stuId, int firstPri1ElectiveSubjID,int firstPri2ElectiveSubjID, int second1ElectiveSubjID, int second2Pri2ElectiveSubjID);
+    
+    boolean checkIfElectiveSubjectsAreInDB(int firstId, int secondId, int thirdId, int fourthId);
+    
     Collection<ElectiveSubjectSummary> getSubjects();
     void savePools(ArrayList<Integer> poolAArray,ArrayList<Integer> poolBArray);
     ArrayList<PrioritiesInfoDTO> getStudentPoolSatisfaction(ArrayList<Integer> poolAArray,ArrayList<Integer> poolBArray);
