@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Thanks for your selection :)</h1></b>
-    <p>You have chosen:</p>
+<!--    <p>You have chosen:</p>-->
     ${lol}
     </body>
 </html>

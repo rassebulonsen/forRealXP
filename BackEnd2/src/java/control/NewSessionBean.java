@@ -29,7 +29,6 @@ public class NewSessionBean implements ElectiveManager {
     @PersistenceContext(unitName = "BackEnd2PU")
     private EntityManager em;
 
-
     @Override
     public void makeChoise(int stuId, int firstPri1ElectiveSubjID, int firstPri2ElectiveSubjID, int second1ElectiveSubjID, int second2Pri2ElectiveSubjID) {
         Student stu = em.find(Student.class, stuId);
@@ -44,7 +43,6 @@ public class NewSessionBean implements ElectiveManager {
         Collection<Electivesubject> subjects = em.createNamedQuery("Electivesubject.findAll").getResultList();
         System.err.println("#Elective = " + subjects.size());
         return createElectiveSummaries(subjects);
-        
     }
 
     @Override
@@ -210,7 +208,6 @@ public class NewSessionBean implements ElectiveManager {
                     priorities.get(5).addStudents(createStudentInfoDTO(stud));
                 }
             }
-            
         }
         for(PrioritiesInfoDTO p : priorities)
         {
@@ -245,9 +242,6 @@ public class NewSessionBean implements ElectiveManager {
         return priorities;    
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
     public void persist(Object object) {
         em.persist(object);
     }
@@ -281,12 +275,16 @@ public class NewSessionBean implements ElectiveManager {
 
     @Override
     public void makeSecondChoise(int stuId, int firstPriPoolAElectiveSubjID, int secondPriPoolAElectiveSubjID, int firstPriPoolBElectiveSubjID, int secondPriPoolBElectiveSubjID) {
-//            StudentRound2 stu = em.find(StudentRound2.class, stuId);
-//            stu.setFirstpripoolaelectivesubjid(firstPriPoolAElectiveSubjID);
-//            stu.setSecondpripoolaelectivesubjid(secondPriPoolAElectiveSubjID);
-//            stu.setFirstpripoolb1electivesubjid(firstPriPoolBElectiveSubjID);
-//            stu.setSecondpripoolbelectivesubjid(secondPriPoolBElectiveSubjID);
+
+        if (stuId == 0) {
             StudentRound2 stu = new StudentRound2(stuId, firstPriPoolAElectiveSubjID, secondPriPoolAElectiveSubjID, firstPriPoolBElectiveSubjID, secondPriPoolBElectiveSubjID, null);
             em.persist(stu);
+        }else {
+            StudentRound2 stu = em.find(StudentRound2.class, stuId);
+            stu.setFirstpripoolaelectivesubjid(firstPriPoolAElectiveSubjID);
+            stu.setSecondpripoolaelectivesubjid(secondPriPoolAElectiveSubjID);
+            stu.setFirstpripoolb1electivesubjid(firstPriPoolBElectiveSubjID);
+            stu.setSecondpripoolbelectivesubjid(secondPriPoolBElectiveSubjID);
         }
+    }
 }

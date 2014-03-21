@@ -76,7 +76,7 @@ class MakeChoises2Command extends TargetCommand{
             }
         }
         
-        String selectedSubjectIDer = "You havew chosen i Pool A: " + firstChoiseA + ", " + secondChoiseA + " and in Pool B: " + firstChoiseB + " and " + secondChoiseB + " as elective subjects";
+        String selectedSubjectIDer = "You have chosen i Pool A: " + firstChoiseA + ", " + secondChoiseA + " and in Pool B: " + firstChoiseB + " and " + secondChoiseB + " as elective subjects";
         
         request.setAttribute("lol" , selectedSubjectIDer);
         
