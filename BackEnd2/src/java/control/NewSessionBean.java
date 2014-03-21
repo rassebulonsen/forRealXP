@@ -276,7 +276,18 @@ public class NewSessionBean implements ElectiveManager {
     @Override
     public void makeSecondChoise(int stuId, int firstPriPoolAElectiveSubjID, int secondPriPoolAElectiveSubjID, int firstPriPoolBElectiveSubjID, int secondPriPoolBElectiveSubjID) {
 
-        if (stuId == 0) {
+        boolean isTheIdInTheDB = false;
+        Collection<StudentRound2> studentsSecond = em.createNamedQuery("StudentRound2.findAll").getResultList();
+        
+        for(StudentRound2 sR2 : studentsSecond)
+        {
+            if(sR2.getStuid() == stuId)
+            {
+                isTheIdInTheDB = true;
+            }
+        }
+        
+        if (!isTheIdInTheDB) {
             StudentRound2 stu = new StudentRound2(stuId, firstPriPoolAElectiveSubjID, secondPriPoolAElectiveSubjID, firstPriPoolBElectiveSubjID, secondPriPoolBElectiveSubjID, null);
             em.persist(stu);
         }else {
