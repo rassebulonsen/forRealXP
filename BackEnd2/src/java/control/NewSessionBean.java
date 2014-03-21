@@ -31,11 +31,27 @@ public class NewSessionBean implements ElectiveManager {
 
     @Override
     public void makeChoise(int stuId, int firstPri1ElectiveSubjID, int firstPri2ElectiveSubjID, int second1ElectiveSubjID, int second2Pri2ElectiveSubjID) {
-        Student stu = em.find(Student.class, stuId);
-        stu.setFirstpri1electivesubjid(firstPri1ElectiveSubjID);
-        stu.setFirstpri2electivesubjid(firstPri2ElectiveSubjID);
-        stu.setSecondpri1electivesubjid(second1ElectiveSubjID);
-        stu.setSecondpri2electivesubjid(second2Pri2ElectiveSubjID);
+        boolean isTheIdInTheDB = false;
+        Collection<Student> students = em.createNamedQuery("Student.findAll").getResultList();
+        
+        for(Student stu : students)
+        {
+            if(stu.getStuid() == stuId)
+            {
+                isTheIdInTheDB = true;
+            }
+        }
+        
+        if (!isTheIdInTheDB) {
+            Student stu = new Student(stuId);
+            em.persist(stu);
+        }
+        
+            Student stu = em.find(Student.class, stuId);
+            stu.setFirstpri1electivesubjid(firstPri1ElectiveSubjID);
+            stu.setFirstpri2electivesubjid(firstPri2ElectiveSubjID);
+            stu.setSecondpri1electivesubjid(second1ElectiveSubjID);
+            stu.setSecondpri2electivesubjid(second2Pri2ElectiveSubjID);
     }
 
     @Override
