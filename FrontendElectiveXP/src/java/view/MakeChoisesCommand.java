@@ -120,8 +120,15 @@ class MakeChoisesCommand extends TargetCommand{
   "You have chosen some id's that are not in the list, please go back and chose some id's that exists in table .....");
         }
         }else{
-            request.setAttribute("lol" , 
+            request.setAttribute("error" , 
   "Some of the id's are the same, please go back and make new choises .....");
+            request.setAttribute("firstpri1", firstPri1SelectedSubjectINT);
+            request.setAttribute("firstpri2", firstPri2SelectedSubjectINT);
+            request.setAttribute("secondpri1", secondPri1SelectedSubjectINT);
+            request.setAttribute("secondpri2", secondPri2SelectedSubjectINT);
+            
+        request.setAttribute("subjects", Factory.getInstance().getManager().getSubjects());
+            return "round1.jsp";
         }
         return super.execute(request);
     }

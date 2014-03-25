@@ -64,20 +64,46 @@ $("#makechoise").click(function() {
         <h1 style="color: red">First round</h1>
         <div id="subjects">
             <h2>Choose 2 first and 2 second priorities</h2>
+        <p style="display: inline">First priority(1)</p>
+            <select id="firstpri1">
+                 <c:forEach items="${subjects}" var="subject">
+                     <option value="${subject.id}">${subject.name}</option>
+                </c:forEach>
+            </select>
+        <p style="display: inline">First priority(2)</p>
+        <select id="firstpri2">
+                 <c:forEach items="${subjects}" var="subject">
+                     <option value="${subject.id}">${subject.name}</option>
+                </c:forEach>
+            </select>
+        <p style="display: inline">Second priority(1)</p>
+        <select id="secondpri1">
+                 <c:forEach items="${subjects}" var="subject">
+                     <option value="${subject.id}">${subject.name}</option>
+                </c:forEach>
+            </select>
+        <p style="display: inline">Second priority(1)</p>
+        <select id="secondpri2">
+                 <c:forEach items="${subjects}" var="subject">
+                     <option value="${subject.id}">${subject.name}</option>
+                </c:forEach>
+            </select>
     <c:forEach items="${subjects}" var="subject">
         <p>Subject name: ${subject.name}. Subject id: ${subject.id}</p>
+        
     </c:forEach>
         </br><p>Write the subjects id you wish in the boxes below:</p>
         <form name="selectSubjects" id="selectSubjects" method="post" action="FrontController">
             <input type="hidden" name="command" value="makeChoises_command">
+            <p style="color: red">${error}</p>
             <p style="display: inline">First priority(1)</p>
-            <input type="text" name="firstpri1" unique="currency" onkeypress="return onlyNumbers();">
+            <input type="text" name="firstpri1" value="${firstpri1}" unique="currency" onkeypress="return onlyNumbers();">
             <p style="display: inline">First priority(2)</p>
-            <input type="text" name="firstpri2" unique="currency" onkeypress="return onlyNumbers();">
+            <input type="text" name="firstpri2" value="${firstpri2}" unique="currency" onkeypress="return onlyNumbers();">
             <p style="display: inline">Second priority(1)</p>
-            <input type="text" name="secondpri1" unique="currency" onkeypress="return onlyNumbers();">
+            <input type="text" name="secondpri1" value="${secondpri1}" unique="currency" onkeypress="return onlyNumbers();">
             <p style="display: inline">Second priority(2)</p>
-            <input type="text" name="secondpri2" unique="currency" onkeypress="return onlyNumbers();"></br>
+            <input type="text" name="secondpri2" value="${secondpri2}" unique="currency" onkeypress="return onlyNumbers();"></br>
             <input type="submit" name="makeChoises" id="makechoise" value="Make choises">
             
         </form>

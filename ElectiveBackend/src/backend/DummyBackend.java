@@ -223,4 +223,14 @@ public class DummyBackend implements ElectiveManager{
     public Collection<ElectiveSubjectSummary> getPoolBSubjects() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean checkIfElectiveSubjectsAreInDB(int firstId, int secondId, int thirdId, int fourthId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void makeSecondChoise(int stuId, int firstPriPoolAElectiveSubjID, int secondPriPoolAElectiveSubjID, int firstPriPoolBElectiveSubjID, int secondPriPoolBElectiveSubjID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
