@@ -47,11 +47,32 @@ class MakeChoises2Command extends TargetCommand{
         String secondPriBSelectedSubject = request.getParameter("secondpriB");
         int secondPriBSelectedSubjectINT = Integer.parseInt(secondPriBSelectedSubject);
         
+        boolean isTheIdsInTheDB = Factory.getInstance().getManager().checkIfElectiveSubjectsAreInDB(
+                firstPriASelectedSubjectINT, firstPriBSelectedSubjectINT, 
+                secondPriASelectedSubjectINT, secondPriBSelectedSubjectINT);
+        
+        if(isTheIdsInTheDB){
+        
+        if(firstPriASelectedSubjectINT == firstPriBSelectedSubjectINT
+                || secondPriASelectedSubject == secondPriBSelectedSubject){
+            request.setAttribute("error" , 
+  "Some of the id's are the same, please make new choises .....");
+            
+            ArrayList<ElectiveSubjectSummary> poolA = new ArrayList<>();
+        ArrayList<ElectiveSubjectSummary> poolB = new ArrayList<>();
+        
+        poolA = (ArrayList<ElectiveSubjectSummary>) Factory.getInstance().getManager().getPoolASubjects();
+        poolB = (ArrayList<ElectiveSubjectSummary>) Factory.getInstance().getManager().getPoolBSubjects();
+        
+        System.out.println(poolA.size());
+        System.out.println(poolB.size());
+       request.setAttribute("PoolA", poolA);
+       request.setAttribute("PoolB", poolB);
+            
+            return "round2.jsp";
+        }
+        
         Factory.getInstance().getManager().makeSecondChoise(2, firstPriASelectedSubjectINT, secondPriASelectedSubjectINT, firstPriBSelectedSubjectINT, secondPriBSelectedSubjectINT);
-        
-        
-        
-//        get subject names:
         
         ArrayList<ElectiveSubjectSummary> subjects = new ArrayList<>();
         subjects = (ArrayList<ElectiveSubjectSummary>) Factory.getInstance().getManager().getSubjects();
@@ -98,7 +119,28 @@ class MakeChoises2Command extends TargetCommand{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+                
+             
+                
         return super.execute(request);
+        
+        }else{
+            request.setAttribute("error" , 
+  "Some of the id's don't exist in the database, please make new choises .....");
+            
+            ArrayList<ElectiveSubjectSummary> poolA = new ArrayList<>();
+        ArrayList<ElectiveSubjectSummary> poolB = new ArrayList<>();
+        
+        poolA = (ArrayList<ElectiveSubjectSummary>) Factory.getInstance().getManager().getPoolASubjects();
+        poolB = (ArrayList<ElectiveSubjectSummary>) Factory.getInstance().getManager().getPoolBSubjects();
+        
+        System.out.println(poolA.size());
+        System.out.println(poolB.size());
+       request.setAttribute("PoolA", poolA);
+       request.setAttribute("PoolB", poolB);
+            
+            return "round2.jsp";
+        }
     }
     
 }

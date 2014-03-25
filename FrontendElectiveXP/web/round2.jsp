@@ -13,6 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="js/jquery-2.0.3.js"></script>
         <script src="js/numbers.js"></script>
+        <script src="js/dropdownScript.js"></script>
         <script>
             $(document).ready(function(){
                 $('#makechoise2').click(function(e){
@@ -73,9 +74,21 @@ $("#makechoise").click(function() {
                 </c:forEach>
                 
                 <p style="display: inline">First priority(A)</p>
-                <input type="text" name="firstpriA" unique="currency" onkeypress="return onlyNumbers();">
+                <select name="firstpriA" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${PoolA}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <!--<input type="text" name="firstpriA" unique="currency" onkeypress="return onlyNumbers();">-->
                 <p style="display: inline">Second priority(A)</p>
-                <input type="text" name="secondpriA" unique="currency" onkeypress="return onlyNumbers();">
+                <select name="secondpriA" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${PoolA}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <!--<input type="text" name="secondpriA" unique="currency" onkeypress="return onlyNumbers();">-->
             </div>
             <div>
                 <h2>Pool B</h2>
@@ -83,9 +96,22 @@ $("#makechoise").click(function() {
                     <p>Subject name: ${poolB.name}. Subject id: ${poolB.id}</p>
                 </c:forEach>
                 <p style="display: inline">First priority(B)</p>
-                <input type="text" name="firstpriB" unique="currency" onkeypress="return onlyNumbers();">
+                <select name="firstpriB" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${PoolB}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <!--<input type="text" name="firstpriB" unique="currency" onkeypress="return onlyNumbers();">-->
                 <p style="display: inline">Second priority(B)</p>
-                <input type="text" name="secondpriB" unique="currency" onkeypress="return onlyNumbers();"></br>
+                <select name="secondpriB" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${PoolB}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <!--<input type="text" name="secondpriB" unique="currency" onkeypress="return onlyNumbers();"></br>-->
+                <p style="color: red">${error}</p>
                 <input type="submit" name="makeChoises2" id="makechoise2" value="Make choises">
             </div>
 
