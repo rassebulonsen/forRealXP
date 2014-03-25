@@ -14,99 +14,164 @@
         <script src="js/numbers.js"></script>
         <title>Round 1 selection</title>
         <script>
-            $(document).ready(function(){
-                $('#makechoise').click(function(e){
+            $(document).ready(function() {
+                $('#makechoise').click(function(e) {
                     var isValid = true;
-                    $('input[type="text"]').each(function(){
-                        if($.trim($(this).val()) === '') {
-                        isValid = false;
-                        $(this).css({
-                            "border": "1px solid red",
-                            "background": "#FFCECE"
-                        });
+                    $('input[type="text"]').each(function() {
+                        if ($.trim($(this).val()) === '') {
+                            isValid = false;
+                            $(this).css({
+                                "border": "1px solid red",
+                                "background": "#FFCECE"
+                            });
+                        }
+                        else {
+                            $(this).css({
+                                "border": "",
+                                "background": ""
+                            });
+                        }
+                    });
+                    if (isValid === false)
+                        e.preventDefault();
+                });
+            });
+
+            jQuery.validator.addMethod("unique", function(value, element, params) {
+                var prefix = params;
+                var selector = jQuery.validator.format("[name!='{0}'][name^='{1}'][unique='{1}']", element.name, prefix);
+                var matches = new Array();
+                $(selector).each(function(index, item) {
+                    if (value == $(item).val()) {
+                        matches.push(item);
                     }
-                    else {
-                        $(this).css({
-                            "border":"",
-                            "background": ""
-                        });
+                });
+
+                return matches.length == 0;
+            }, "Value is not unique.");
+
+            jQuery.validator.classRuleSettings.unique = {
+                unique: true
+            };
+            $("#selectSubjects").validate();
+
+            $("#makechoise").click(function() {
+                $("#selectSubjects").valid();
+            });
+
+            var prev = -1;
+            $("select").change(function() {
+                if ($(this).val() > -1) {
+                    $("select").not(this).find("option[value=" + $(this).val() + "]").attr('disabled', 'disabled');
+                    $("select").not(this).find("option[value=" + previous + "]").removeAttr('disabled');
+                } else {
+                    $("select").not(this).find("option[value=" + previous + "]").removeAttr('disabled');
+                }
+            }).focus(function() {
+                previous = $(this).val();
+            });
+
+//function selectedremoveFirstPri1()
+//{
+////    var list1 = document.getElementById("firstpri1");
+////    var index = list1.options[list1.selectedIndex];
+//    alert("Test");
+//}
+            function callSave(select) {
+                // get reference to parent div
+                var parent = select.parentNode;
+
+                // map to store already selected values; key is the selected option value, and value is the select itself
+                var usedValues = {};
+
+                // iterate through selects
+                for (var i = 0; i < parent.children.length; ++i) {
+                    // add value to the usedValues map it's not empty
+                    if (parent.children[i].value != '') {
+                        usedValues[ parent.children[i].value ] = parent.children[i];
                     }
-                });
-                if (isValid === false)
-                    e.preventDefault();
-                });
-                });
-        
-jQuery.validator.addMethod("unique", function(value, element, params) {
-    var prefix = params;
-    var selector = jQuery.validator.format("[name!='{0}'][name^='{1}'][unique='{1}']", element.name, prefix);
-    var matches = new Array();
-    $(selector).each(function(index, item) {
-        if (value == $(item).val()) {
-            matches.push(item);
-        }
-    });
+                }
 
-    return matches.length == 0;
-}, "Value is not unique.");
+                // iterate through selects again
+                for (var i = 0; i < parent.children.length; ++i) {
+                    // select at index i
+                    var s = parent.children[i];
 
-jQuery.validator.classRuleSettings.unique = {
-    unique: true
-};
-$("#selectSubjects").validate();
+                    // iterate through select options
+                    for (var j = 0; j < s.children.length; ++j) {
+                        // option at index j
+                        var o = s.children[j];
 
-$("#makechoise").click(function() {
-    $("#selectSubjects").valid();
-});
+                        // get select from usedValues for value of option o; if option is the empty one return undefined
+                        var p = o.value == '' ? undefined : usedValues[o.value];
+
+                        // if p is undefined it means option is unselected
+                        // if p == s it means option is selected in select s
+                        // if either of this conditions is met, option should be visible
+                        if (p == undefined || p == s) {
+                            o.style.display = '';
+                        }
+                        // option otherwise
+                        else {
+                            o.style.display = 'none';
+                        }
+                    }
+                }
+            }
         </script>
     </head>
     <body>
         <h1 style="color: red">First round</h1>
         <div id="subjects">
             <h2>Choose 2 first and 2 second priorities</h2>
-        <p style="display: inline">First priority(1)</p>
-            <select id="firstpri1">
-                 <c:forEach items="${subjects}" var="subject">
-                     <option value="${subject.id}">${subject.name}</option>
-                </c:forEach>
-            </select>
-        <p style="display: inline">First priority(2)</p>
-        <select id="firstpri2">
-                 <c:forEach items="${subjects}" var="subject">
-                     <option value="${subject.id}">${subject.name}</option>
-                </c:forEach>
-            </select>
-        <p style="display: inline">Second priority(1)</p>
-        <select id="secondpri1">
-                 <c:forEach items="${subjects}" var="subject">
-                     <option value="${subject.id}">${subject.name}</option>
-                </c:forEach>
-            </select>
-        <p style="display: inline">Second priority(1)</p>
-        <select id="secondpri2">
-                 <c:forEach items="${subjects}" var="subject">
-                     <option value="${subject.id}">${subject.name}</option>
-                </c:forEach>
-            </select>
-    <c:forEach items="${subjects}" var="subject">
-        <p>Subject name: ${subject.name}. Subject id: ${subject.id}</p>
-        
-    </c:forEach>
-        </br><p>Write the subjects id you wish in the boxes below:</p>
-        <form name="selectSubjects" id="selectSubjects" method="post" action="FrontController">
-            <input type="hidden" name="command" value="makeChoises_command">
-            <p style="color: red">${error}</p>
-            <p style="display: inline">First priority(1)</p>
-            <input type="text" name="firstpri1" value="${firstpri1}" unique="currency" onkeypress="return onlyNumbers();">
-            <p style="display: inline">First priority(2)</p>
-            <input type="text" name="firstpri2" value="${firstpri2}" unique="currency" onkeypress="return onlyNumbers();">
-            <p style="display: inline">Second priority(1)</p>
-            <input type="text" name="secondpri1" value="${secondpri1}" unique="currency" onkeypress="return onlyNumbers();">
-            <p style="display: inline">Second priority(2)</p>
-            <input type="text" name="secondpri2" value="${secondpri2}" unique="currency" onkeypress="return onlyNumbers();"></br>
-            <input type="submit" name="makeChoises" id="makechoise" value="Make choises">
-            
-        </form>
+
+            <c:forEach items="${subjects}" var="subject">
+                <p>Subject name: ${subject.name}. Subject id: ${subject.id}</p>
+
+            </c:forEach>
+            </br><p>Write the subjects id you wish in the boxes below:</p>
+            <form name="selectSubjects" id="selectSubjects" method="post" action="FrontController">
+                <input type="hidden" name="command" value="makeChoises_command">
+                <p style="color: red">${error}</p>
+                <p style="display: inline">First priority(1)</p>
+                <select name="firstpri1" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <p style="display: inline">First priority(2)</p>
+                <select name="firstpri2" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <p style="display: inline">Second priority(1)</p>
+                <select name="secondpri1" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <p style="display: inline">Second priority(2)</p>
+                <select name="secondpri2" onchange="callSave(this);">
+                    <option value="-1">Vælg fag</option>
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}">${subject.name}</option>
+                    </c:forEach>
+                </select>
+                <!--            <p style="display: inline">First priority(1)</p>
+                            <input type="text" name="firstpri1" value="{firstpri1}" unique="currency" onkeypress="return onlyNumbers();">
+                            <p style="display: inline">First priority(2)</p>
+                            <input type="text" name="firstpri2" value="{firstpri2}" unique="currency" onkeypress="return onlyNumbers();">
+                            <p style="display: inline">Second priority(1)</p>
+                            <input type="text" name="secondpri1" value="{secondpri1}" unique="currency" onkeypress="return onlyNumbers();">
+                            <p style="display: inline">Second priority(2)</p>
+                            <input type="text" name="secondpri2" value="{secondpri2}" unique="currency" onkeypress="return onlyNumbers();"></br>-->
+                <input type="submit" name="makeChoises" id="makechoise" value="Make choises">
+
+            </form>
         </div>
     </body>
 </html>

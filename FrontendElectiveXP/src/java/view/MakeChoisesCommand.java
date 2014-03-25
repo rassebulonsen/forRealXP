@@ -25,6 +25,7 @@ class MakeChoisesCommand extends TargetCommand{
     public String execute(HttpServletRequest request) {
         
         String firstPri1SelectedSubject = request.getParameter("firstpri1");
+        System.out.println(""+firstPri1SelectedSubject);
         int firstPri1SelectedSubjectINT = Integer.parseInt(firstPri1SelectedSubject);
         
         String firstPri2SelectedSubject = request.getParameter("firstpri2");
@@ -116,12 +117,13 @@ class MakeChoisesCommand extends TargetCommand{
 			e.printStackTrace();
 		}
         }else{
-            request.setAttribute("lol" , 
+            request.setAttribute("error" , 
   "You have chosen some id's that are not in the list, please go back and chose some id's that exists in table .....");
+                        return "round1.jsp";
         }
         }else{
             request.setAttribute("error" , 
-  "Some of the id's are the same, please go back and make new choises .....");
+  "Some of the id's are the same, please make new choises .....");
             request.setAttribute("firstpri1", firstPri1SelectedSubjectINT);
             request.setAttribute("firstpri2", firstPri2SelectedSubjectINT);
             request.setAttribute("secondpri1", secondPri1SelectedSubjectINT);
