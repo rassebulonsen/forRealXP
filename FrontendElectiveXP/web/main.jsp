@@ -16,5 +16,6 @@
         <a href="FrontController?command=subject"> Round 1</a>
         <p><a href="FrontController?command=makePool"> make pools</a></p>
         <a href="FrontController?command=make_pool_subject_selections"> Round 2</a>
+        <a href="FrontController?command=elective_selection">Select subjects</a>
     </body>
 </html>

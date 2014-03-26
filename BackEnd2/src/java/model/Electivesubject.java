@@ -45,7 +45,7 @@ public class Electivesubject implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SUBJECTID")
-    @GeneratedValue(generator = "ELESEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "ElESEQ", strategy = GenerationType.SEQUENCE)
     private Integer subjectid;
     @Size(max = 20)
     @Column(name = "NAME")
