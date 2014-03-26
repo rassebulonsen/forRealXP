@@ -34,6 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Student.findBySecondpri1electivesubjid", query = "SELECT s FROM Student s WHERE s.secondpri1electivesubjid = :secondpri1electivesubjid"),
     @NamedQuery(name = "Student.findBySecondpri2electivesubjid", query = "SELECT s FROM Student s WHERE s.secondpri2electivesubjid = :secondpri2electivesubjid")})
 public class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "STUID")
+    private Integer stuid;
     @Column(name = "FIRSTPRI1ELECTIVESUBJID")
     private Integer firstpri1electivesubjid;
     @Column(name = "FIRSTPRI2ELECTIVESUBJID")
@@ -42,13 +49,6 @@ public class Student implements Serializable {
     private Integer secondpri1electivesubjid;
     @Column(name = "SECONDPRI2ELECTIVESUBJID")
     private Integer secondpri2electivesubjid;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "STUID")
-    private Integer stuid;
     @JoinColumn(name = "STUID", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Person person;
@@ -66,6 +66,38 @@ public class Student implements Serializable {
 
     public void setStuid(Integer stuid) {
         this.stuid = stuid;
+    }
+
+    public Integer getFirstpri1electivesubjid() {
+        return firstpri1electivesubjid;
+    }
+
+    public void setFirstpri1electivesubjid(Integer firstpri1electivesubjid) {
+        this.firstpri1electivesubjid = firstpri1electivesubjid;
+    }
+
+    public Integer getFirstpri2electivesubjid() {
+        return firstpri2electivesubjid;
+    }
+
+    public void setFirstpri2electivesubjid(Integer firstpri2electivesubjid) {
+        this.firstpri2electivesubjid = firstpri2electivesubjid;
+    }
+
+    public Integer getSecondpri1electivesubjid() {
+        return secondpri1electivesubjid;
+    }
+
+    public void setSecondpri1electivesubjid(Integer secondpri1electivesubjid) {
+        this.secondpri1electivesubjid = secondpri1electivesubjid;
+    }
+
+    public Integer getSecondpri2electivesubjid() {
+        return secondpri2electivesubjid;
+    }
+
+    public void setSecondpri2electivesubjid(Integer secondpri2electivesubjid) {
+        this.secondpri2electivesubjid = secondpri2electivesubjid;
     }
 
     public Person getPerson() {
@@ -99,38 +131,6 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return "model.Student[ stuid=" + stuid + " ]";
-    }
-
-    public Integer getFirstpri1electivesubjid() {
-        return firstpri1electivesubjid;
-    }
-
-    public void setFirstpri1electivesubjid(Integer firstpri1electivesubjid) {
-        this.firstpri1electivesubjid = firstpri1electivesubjid;
-    }
-
-    public Integer getFirstpri2electivesubjid() {
-        return firstpri2electivesubjid;
-    }
-
-    public void setFirstpri2electivesubjid(Integer firstpri2electivesubjid) {
-        this.firstpri2electivesubjid = firstpri2electivesubjid;
-    }
-
-    public Integer getSecondpri1electivesubjid() {
-        return secondpri1electivesubjid;
-    }
-
-    public void setSecondpri1electivesubjid(Integer secondpri1electivesubjid) {
-        this.secondpri1electivesubjid = secondpri1electivesubjid;
-    }
-
-    public Integer getSecondpri2electivesubjid() {
-        return secondpri2electivesubjid;
-    }
-
-    public void setSecondpri2electivesubjid(Integer secondpri2electivesubjid) {
-        this.secondpri2electivesubjid = secondpri2electivesubjid;
     }
     
 }

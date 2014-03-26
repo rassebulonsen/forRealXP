@@ -351,4 +351,20 @@ public class NewSessionBean implements ElectiveManager {
         
         return isTheIdsInDB;
     }
+
+    public void addSudentsInSubject(ArrayList<Integer> studentIds, int subjectId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void insertElectiveSubject(String name, String learn_JavaScript) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ElectiveSubjectSummary getSubject(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }

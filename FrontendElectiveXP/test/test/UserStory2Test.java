@@ -4,7 +4,6 @@
  */
 package test;
 
-import control.NewSessionBean;
 import electivexp.ElectiveManager;
 import electivexp.dto.ElectiveSubjectSummary;
 import java.util.logging.Level;
@@ -12,7 +11,6 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import model.Electivesubject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -25,11 +23,13 @@ import static org.junit.Assert.*;
  * @author Thomas
  */
 public class UserStory2Test {
-    ElectiveManager newSessionBean = lookupNewSessionBeanBean();
+    ElectiveManager newSessionBean = lookupNewSessionBeanRemote();
+    
+    
     
     public UserStory2Test() {
     }
-    //hehe
+    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -40,13 +40,16 @@ public class UserStory2Test {
     
     @Before
     public void setUp() {
-//        eld = ElectiveSubjectSummary(1, "C#", "C Sharp");
     }
     
-   @After
+    @After
     public void tearDown() {
-//        newSessionBean.deleteSubject("JavaScript");
     }
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
     @Test
     public void testInsertElectiveSubject() {
         String name = "JavaScript";
@@ -55,16 +58,11 @@ public class UserStory2Test {
        ElectiveSubjectSummary e = newSessionBean.getSubject(name);
        assertNotNull(e);
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 
-    private NewSessionBean lookupNewSessionBeanBean() {
+    private ElectiveManager lookupNewSessionBeanRemote() {
         try {
             Context c = new InitialContext();
-            return (NewSessionBean) c.lookup("java:global/BackEnd2/NewSessionBean!control.NewSessionBean");
+            return (ElectiveManager) c.lookup("java:global/BackEnd2/NewSessionBean!electivexp.ElectiveManager");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
