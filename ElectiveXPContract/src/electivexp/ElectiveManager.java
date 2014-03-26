@@ -31,7 +31,7 @@ public interface ElectiveManager {
     
     void makeSecondChoise(int stuId, int firstPriPoolAElectiveSubjID,int secondPriPoolAElectiveSubjID, int firstPriPoolBElectiveSubjID, int secondPriPoolBElectiveSubjID);
 
-    public void insertElectiveSubject(String name, String learn_JavaScript);
+    public void insertElectiveSubject(String name, String desc);
 
     public ElectiveSubjectSummary getSubject(String name);
 }
