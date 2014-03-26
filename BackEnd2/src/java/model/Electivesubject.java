@@ -10,12 +10,15 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Electivesubject.findBySubjectid", query = "SELECT e FROM Electivesubject e WHERE e.subjectid = :subjectid"),
     @NamedQuery(name = "Electivesubject.findByName", query = "SELECT e FROM Electivesubject e WHERE e.name = :name"),
     @NamedQuery(name = "Electivesubject.findByDescription", query = "SELECT e FROM Electivesubject e WHERE e.description = :description")})
+@SequenceGenerator(name = "ElESEQ", sequenceName = "elect_seq")
 public class Electivesubject implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -41,6 +45,7 @@ public class Electivesubject implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SUBJECTID")
+    @GeneratedValue(generator = "ELESEQ", strategy = GenerationType.SEQUENCE)
     private Integer subjectid;
     @Size(max = 20)
     @Column(name = "NAME")
@@ -62,10 +67,18 @@ public class Electivesubject implements Serializable {
     public Electivesubject() {
     }
 
-    public Electivesubject(Integer subjectid) {
+    //    public Electivesubject(Integer subjectid) {
+    //        this.subjectid = subjectid;
+    //    }
+    public Electivesubject(Integer subjectid, String name, String description) {
         this.subjectid = subjectid;
+        this.name = name;
+        this.description = description;
     }
 
+    
+    
+    
     public Integer getSubjectid() {
         return subjectid;
     }
