@@ -32,6 +32,7 @@ public class Factory {
             commands.put("makeChoises2_Command", new MakeChoises2Command("round2End.jsp"));
             commands.put("make_pool_subject_selections", new SecondSelectionCommand("round2.jsp"));
             commands.put("makePool", new setupPoolCommand("pool.jsp"));
+            commands.put("elective_selection", new ElectiveSelectionCommand("elective_selection.jsp"));
     }
     
     public static Factory getInstance(){

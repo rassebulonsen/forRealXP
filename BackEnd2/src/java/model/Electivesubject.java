@@ -70,6 +70,12 @@ public class Electivesubject implements Serializable {
     //    public Electivesubject(Integer subjectid) {
     //        this.subjectid = subjectid;
     //    }
+    
+    public Electivesubject(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+    
     public Electivesubject(Integer subjectid, String name, String description) {
         this.subjectid = subjectid;
         this.name = name;

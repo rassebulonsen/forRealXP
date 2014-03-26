@@ -357,8 +357,9 @@ public class NewSessionBean implements ElectiveManager {
     }
 
     @Override
-    public void insertElectiveSubject(String name, String learn_JavaScript) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insertElectiveSubject(String name, String desc) {
+        Electivesubject subject = new Electivesubject(name, desc);
+        em.persist(subject);
     }
 
     @Override
