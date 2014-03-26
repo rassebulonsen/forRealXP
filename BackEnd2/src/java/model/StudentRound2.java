@@ -34,6 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "StudentRound2.findByFirstpripoolb1electivesubjid", query = "SELECT s FROM StudentRound2 s WHERE s.firstpripoolb1electivesubjid = :firstpripoolb1electivesubjid"),
     @NamedQuery(name = "StudentRound2.findBySecondpripoolbelectivesubjid", query = "SELECT s FROM StudentRound2 s WHERE s.secondpripoolbelectivesubjid = :secondpripoolbelectivesubjid")})
 public class StudentRound2 implements Serializable {
+    private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "STUID")
+    private Integer stuid;
     @Column(name = "FIRSTPRIPOOLAELECTIVESUBJID")
     private Integer firstpripoolaelectivesubjid;
     @Column(name = "SECONDPRIPOOLAELECTIVESUBJID")
@@ -42,13 +49,6 @@ public class StudentRound2 implements Serializable {
     private Integer firstpripoolb1electivesubjid;
     @Column(name = "SECONDPRIPOOLBELECTIVESUBJID")
     private Integer secondpripoolbelectivesubjid;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "STUID")
-    private Integer stuid;
     @JoinColumn(name = "STUID", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Person person;
@@ -75,6 +75,38 @@ public class StudentRound2 implements Serializable {
 
     public void setStuid(Integer stuid) {
         this.stuid = stuid;
+    }
+
+    public Integer getFirstpripoolaelectivesubjid() {
+        return firstpripoolaelectivesubjid;
+    }
+
+    public void setFirstpripoolaelectivesubjid(Integer firstpripoolaelectivesubjid) {
+        this.firstpripoolaelectivesubjid = firstpripoolaelectivesubjid;
+    }
+
+    public Integer getSecondpripoolaelectivesubjid() {
+        return secondpripoolaelectivesubjid;
+    }
+
+    public void setSecondpripoolaelectivesubjid(Integer secondpripoolaelectivesubjid) {
+        this.secondpripoolaelectivesubjid = secondpripoolaelectivesubjid;
+    }
+
+    public Integer getFirstpripoolb1electivesubjid() {
+        return firstpripoolb1electivesubjid;
+    }
+
+    public void setFirstpripoolb1electivesubjid(Integer firstpripoolb1electivesubjid) {
+        this.firstpripoolb1electivesubjid = firstpripoolb1electivesubjid;
+    }
+
+    public Integer getSecondpripoolbelectivesubjid() {
+        return secondpripoolbelectivesubjid;
+    }
+
+    public void setSecondpripoolbelectivesubjid(Integer secondpripoolbelectivesubjid) {
+        this.secondpripoolbelectivesubjid = secondpripoolbelectivesubjid;
     }
 
     public Person getPerson() {
@@ -108,38 +140,6 @@ public class StudentRound2 implements Serializable {
     @Override
     public String toString() {
         return "model.StudentRound2[ stuid=" + stuid + " ]";
-    }
-
-    public Integer getFirstpripoolaelectivesubjid() {
-        return firstpripoolaelectivesubjid;
-    }
-
-    public void setFirstpripoolaelectivesubjid(Integer firstpripoolaelectivesubjid) {
-        this.firstpripoolaelectivesubjid = firstpripoolaelectivesubjid;
-    }
-
-    public Integer getSecondpripoolaelectivesubjid() {
-        return secondpripoolaelectivesubjid;
-    }
-
-    public void setSecondpripoolaelectivesubjid(Integer secondpripoolaelectivesubjid) {
-        this.secondpripoolaelectivesubjid = secondpripoolaelectivesubjid;
-    }
-
-    public Integer getFirstpripoolb1electivesubjid() {
-        return firstpripoolb1electivesubjid;
-    }
-
-    public void setFirstpripoolb1electivesubjid(Integer firstpripoolb1electivesubjid) {
-        this.firstpripoolb1electivesubjid = firstpripoolb1electivesubjid;
-    }
-
-    public Integer getSecondpripoolbelectivesubjid() {
-        return secondpripoolbelectivesubjid;
-    }
-
-    public void setSecondpripoolbelectivesubjid(Integer secondpripoolbelectivesubjid) {
-        this.secondpripoolbelectivesubjid = secondpripoolbelectivesubjid;
     }
     
 }
