@@ -139,15 +139,6 @@ public class AjaxController extends HttpServlet {
                                     ",2:"+priorities.get(3).getStudentByIndex(j).getSecondPri2ElectiveSubjName()+")";
                         }
                         send=send+"</td>"+"<td>";
-                        if(priorities.get(5).getSize()>j)
-                        {
-                            send=send+priorities.get(5).getStudentByIndex(j).getName()+
-                                    "(1:"+priorities.get(5).getStudentByIndex(j).getFirstPri1ElectiveSubjName()+
-                                    ",1:"+priorities.get(5).getStudentByIndex(j).getFirstPri2ElectiveSubjName()+
-                                    ",2:"+priorities.get(5).getStudentByIndex(j).getSecondPri1ElectiveSubjName()+
-                                    ",2:"+priorities.get(5).getStudentByIndex(j).getSecondPri2ElectiveSubjName()+")";
-                        }
-                        send=send+"</td>"+"<td>";
                         if(priorities.get(4).getSize()>j)
                         {
                             send=send+priorities.get(4).getStudentByIndex(j).getName()+
@@ -155,6 +146,15 @@ public class AjaxController extends HttpServlet {
                                     ",1:"+priorities.get(4).getStudentByIndex(j).getFirstPri2ElectiveSubjName()+
                                     ",2:"+priorities.get(4).getStudentByIndex(j).getSecondPri1ElectiveSubjName()+
                                     ",2:"+priorities.get(4).getStudentByIndex(j).getSecondPri2ElectiveSubjName()+")";
+                        }
+                        send=send+"</td>"+"<td>";
+                        if(priorities.get(5).getSize()>j)
+                        {
+                            send=send+priorities.get(5).getStudentByIndex(j).getName()+
+                                    "(1:"+priorities.get(5).getStudentByIndex(j).getFirstPri1ElectiveSubjName()+
+                                    ",1:"+priorities.get(5).getStudentByIndex(j).getFirstPri2ElectiveSubjName()+
+                                    ",2:"+priorities.get(5).getStudentByIndex(j).getSecondPri1ElectiveSubjName()+
+                                    ",2:"+priorities.get(5).getStudentByIndex(j).getSecondPri2ElectiveSubjName()+")";
                         }
                         send=send+"</td>";
                         send=send+"</tr>";
