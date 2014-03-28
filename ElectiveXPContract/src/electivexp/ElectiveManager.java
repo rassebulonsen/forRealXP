@@ -34,4 +34,9 @@ public interface ElectiveManager {
     public void insertElectiveSubject(String name, String desc);
 
     public ElectiveSubjectSummary getSubject(String name);
+    
+    void updateElectiveSubjectRound1(int sujectId, String yesOrNo);
+    
+    Collection<ElectiveSubjectSummary> getSubjectsRound1();
+    Collection<ElectiveSubjectSummary> getSubjectsRound2();
 }

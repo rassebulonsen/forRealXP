@@ -318,4 +318,25 @@ public class NewSessionBean implements ElectiveManager {
     public ElectiveSubjectSummary getSubject(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void updateElectiveSubjectRound1(int sujectId, String yesOrNo) {
+            Electivesubject es = em.find(Electivesubject.class, sujectId);
+            es.setRound1(yesOrNo);
+//            stu.setFirstpripoolaelectivesubjid(firstPriPoolAElectiveSubjID);
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getSubjectsRound1() {
+        Collection<Electivesubject> subjects = em.createNamedQuery("Electivesubject.findByRound1").getResultList();
+        System.err.println("#Elective = " + subjects.size());
+        return createElectiveSummaries(subjects);
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getSubjectsRound2() {
+        Collection<Electivesubject> subjects = em.createNamedQuery("Electivesubject.findByRound2").getResultList();
+        System.err.println("#Elective = " + subjects.size());
+        return createElectiveSummaries(subjects);
+    }
 }

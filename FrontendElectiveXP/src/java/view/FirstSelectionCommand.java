@@ -22,7 +22,7 @@ public class FirstSelectionCommand extends TargetCommand {
 //        DummyBackend dummy = new DummyBackend();
 //        ArrayList<ElectiveSubjectSummary> electiveSubjects = new ArrayList<>();
 //        electiveSubjects = dummy.getElectivSubjects();
-        request.setAttribute("subjects", Factory.getInstance().getManager().getSubjects());
+        request.setAttribute("subjects", Factory.getInstance().getManager().getSubjectsRound1());
 
         return super.execute(request); //To change body of generated methods, choose Tools | Templates.
     }

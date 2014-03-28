@@ -35,10 +35,18 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Electivesubject.findAll", query = "SELECT e FROM Electivesubject e"),
     @NamedQuery(name = "Electivesubject.findBySubjectid", query = "SELECT e FROM Electivesubject e WHERE e.subjectid = :subjectid"),
+    @NamedQuery(name = "Electivesubject.findByRound1", query = "SELECT e FROM Electivesubject e WHERE e.round1 = 'yes'"),
+    @NamedQuery(name = "Electivesubject.findByRound2", query = "SELECT e FROM Electivesubject e WHERE e.round2 = 'yes'"),
     @NamedQuery(name = "Electivesubject.findByName", query = "SELECT e FROM Electivesubject e WHERE e.name = :name"),
     @NamedQuery(name = "Electivesubject.findByDescription", query = "SELECT e FROM Electivesubject e WHERE e.description = :description")})
 @SequenceGenerator(name = "ElESEQ", sequenceName = "elect_seq", allocationSize = 1)
 public class Electivesubject implements Serializable {
+    @Size(max = 5)
+    @Column(name = "ROUND1")
+    private String round1;
+    @Size(max = 5)
+    @Column(name = "ROUND2")
+    private String round2;
     @JoinTable(name = "STUDENT_SUBJECT", joinColumns = {
         @JoinColumn(name = "SUBJECTID", referencedColumnName = "SUBJECTID")}, inverseJoinColumns = {
         @JoinColumn(name = "STUID", referencedColumnName = "STUID")})
@@ -86,6 +94,13 @@ public class Electivesubject implements Serializable {
         this.subjectid = subjectid;
         this.name = name;
         this.description = description;
+    }
+
+    public Electivesubject(String round1, String round2, Integer subjectid, String name) {
+        this.round1 = round1;
+        this.round2 = round2;
+        this.subjectid = subjectid;
+        this.name = name;
     }
 
     
@@ -165,6 +180,22 @@ public class Electivesubject implements Serializable {
 
     public void setStudentCollection(Collection<Student> studentCollection) {
         this.studentCollection = studentCollection;
+    }
+
+    public String getRound1() {
+        return round1;
+    }
+
+    public void setRound1(String round1) {
+        this.round1 = round1;
+    }
+
+    public String getRound2() {
+        return round2;
+    }
+
+    public void setRound2(String round2) {
+        this.round2 = round2;
     }
     
 }
