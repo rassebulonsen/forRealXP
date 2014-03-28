@@ -243,4 +243,19 @@ public class DummyBackend implements ElectiveManager{
     public ElectiveSubjectSummary getSubject(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void updateElectiveSubjectRound1(int sujectId, String yesOrNo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getSubjectsRound1() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<ElectiveSubjectSummary> getSubjectsRound2() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
