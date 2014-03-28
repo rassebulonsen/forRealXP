@@ -26,6 +26,7 @@ class CreateNewSubjectCommand extends TargetCommand{
         
         request.setAttribute("lool", "The new subject: " + newSubjectName + " is in the database.");
         System.out.println(newSubjectName);
+        request.setAttribute("subjects", Factory.getInstance().getManager().getSubjects());
         return super.execute(request); //To change body of generated methods, choose Tools | Templates.
     }
     
