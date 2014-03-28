@@ -37,15 +37,21 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Electivesubject.findBySubjectid", query = "SELECT e FROM Electivesubject e WHERE e.subjectid = :subjectid"),
     @NamedQuery(name = "Electivesubject.findByName", query = "SELECT e FROM Electivesubject e WHERE e.name = :name"),
     @NamedQuery(name = "Electivesubject.findByDescription", query = "SELECT e FROM Electivesubject e WHERE e.description = :description")})
-@SequenceGenerator(name = "ElESEQ", sequenceName = "elect_seq")
+@SequenceGenerator(name = "ElESEQ", sequenceName = "elect_seq", allocationSize = 1)
 public class Electivesubject implements Serializable {
+    @JoinTable(name = "STUDENT_SUBJECT", joinColumns = {
+        @JoinColumn(name = "SUBJECTID", referencedColumnName = "SUBJECTID")}, inverseJoinColumns = {
+        @JoinColumn(name = "STUID", referencedColumnName = "STUID")})
+    @ManyToMany
+    private Collection<Student> studentCollection;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "SUBJECTID")
-    @GeneratedValue(generator = "ElESEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "ElESEQ", strategy = GenerationType.IDENTITY)
+    
     private Integer subjectid;
     @Size(max = 20)
     @Column(name = "NAME")
@@ -150,6 +156,15 @@ public class Electivesubject implements Serializable {
     @Override
     public String toString() {
         return "model.Electivesubject[ subjectid=" + subjectid + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Student> getStudentCollection() {
+        return studentCollection;
+    }
+
+    public void setStudentCollection(Collection<Student> studentCollection) {
+        this.studentCollection = studentCollection;
     }
     
 }

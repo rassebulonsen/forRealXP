@@ -111,14 +111,6 @@ public class Person implements Serializable {
         this.lname = lname;
     }
 
-    public Integer getCpr() {
-        return cpr;
-    }
-
-    public void setCpr(Integer cpr) {
-        this.cpr = cpr;
-    }
-
     public String getEmail() {
         return email;
     }

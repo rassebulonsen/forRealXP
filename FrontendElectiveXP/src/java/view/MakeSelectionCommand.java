@@ -13,7 +13,7 @@ import javax.sound.midi.Soundbank;
  *
  * @author Rasmus
  */
-class MakeSelectionCommand extends TargetCommand{
+class MakeSelectionCommand extends TargetCommand {
 
     public MakeSelectionCommand(String target) {
         super(target);
@@ -21,15 +21,14 @@ class MakeSelectionCommand extends TargetCommand{
 
     @Override
     public String execute(HttpServletRequest request) {
-        
+
         Collection<ElectiveSubjectSummary> subjects = Factory.getInstance().getManager().getSubjects();
-        
-        for(ElectiveSubjectSummary es : subjects){
-                 
+
+        for (ElectiveSubjectSummary es : subjects) {
+
             System.out.println(request.getParameter(es.getId() + ""));
         }
-        
+
         return super.execute(request); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

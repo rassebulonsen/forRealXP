@@ -10,7 +10,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="js/jquery-2.0.3.js"></script>
+        <script src="js/numbers.js"></script>
+        <script src="js/dropdownScript.js"></script>
         <title>JSP Page</title>
+        <script>
+            $(document).ready(function() {
+                $('#createNewSubject').click(function(e) {
+                    var isValid = true;
+                    $('input[type="text"]').each(function() {
+                        if ($.trim($(this).val()) === '') {
+                            isValid = false;
+                            $(this).css({
+                                "border": "1px solid red",
+                                "background": "#FFCECE"
+                            });
+                        }
+                        else {
+                            $(this).css({
+                                "border": "",
+                                "background": ""
+                            });
+                        }
+                    });
+                    if (isValid === false)
+                        e.preventDefault();
+                });
+            });
+   </script>
     </head>
     <body>
         <h1>Select elective subjects</h1>
