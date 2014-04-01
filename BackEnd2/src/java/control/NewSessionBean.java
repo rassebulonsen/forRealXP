@@ -343,7 +343,23 @@ public class NewSessionBean implements ElectiveManager {
 
     @Override
     public void addSudentsInSubject(int studentId, int subjectId) {
-
+        Student s = em.find(Student.class, studentId);
+        Collection<Electivesubject> subjects = s.getElectivesubjectCollection();
+        for(Electivesubject eSubject:subjects)
+        {
+            Collection<Student> students = new ArrayList<>();
+            Collection<Student> oldStudents = eSubject.getStudentCollection();
+            for(Student student: oldStudents)
+            {
+                if(student.getStuid() != studentId)
+                {
+                    students.add(student);
+                }
+            }
+        }
+        Electivesubject es = em.find(Electivesubject.class, subjectId);
+        s.setElectivesubjectCollection(java.util.Collections.singleton(es));
+        
     }
 
     @Override
