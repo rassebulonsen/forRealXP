@@ -356,9 +356,13 @@ public class NewSessionBean implements ElectiveManager {
                     students.add(student);
                 }
             }
+            eSubject.setStudentCollection(students);
         }
         Electivesubject es = em.find(Electivesubject.class, subjectId);
         s.setElectivesubjectCollection(java.util.Collections.singleton(es));
+        Collection<Student> students = es.getStudentCollection();
+        students.add(s);
+        es.setStudentCollection(students);
         
     }
 
@@ -398,12 +402,17 @@ public class NewSessionBean implements ElectiveManager {
                 }
                 for (StudentListInSubjectDTO list : studentList) {
                     if (subjectId == list.getSubjId()) {
+                        Electivesubject es = em.find(Electivesubject.class, subjectId);
+                        student.setElectivesubjectCollection(java.util.Collections.singleton(es));
+                        Collection<Student> studs = es.getStudentCollection();
+                        studs.add(student);
+                        es.setStudentCollection(studs);
                         list.addStudents(createStudentInfoDtoWithRound2(student, sRound2, subjects));
                         break;
                     }
                 }
             }
-        }
+        }//fo each Student end here
         return studentList;
     }
 }

@@ -14,6 +14,24 @@
         <title>Student List</title>
         
         <script>
+            function sendStudent(stuId,subjId)
+            {
+              $.ajax({
+                    url: "/FrontendElectiveXP/AjaxController",
+                    data: {
+                        command :"gemStudent",
+                        stuId : stuId,
+                        subjId : subjId
+                    },
+                    success: detGikGodt
+                });
+            };
+            function detGikGodt(data)
+            {
+               //alert(data);
+               $("#updates").html(data);
+            }
+            ;
             function moveToListe(fraListe,tilListe)
             {
                 var a = document.getElementById(fraListe);
@@ -21,8 +39,10 @@
                 var text = a.options[a.selectedIndex].text;
                 $("#" + tilListe + "").append('<option value=' + value + '>' + text + '</option>');
                 deleteItem(fraListe);
+                sendStudent(value,tilListe);
             }
             ;
+            
             function deleteItem(elementId)
             {
                 var a = document.getElementById(elementId);
@@ -85,6 +105,6 @@
                 <button onclick="moveToListe('poolBmain','${list.subjId}')">move to List ${list.subjName}</button>
             </c:forEach>
         </div>
-        <button onclick="saveList();">Gem Liste</button>
+        <p id="updates"></p>
     </body>
 </html>

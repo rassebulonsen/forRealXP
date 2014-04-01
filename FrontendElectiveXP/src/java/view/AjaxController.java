@@ -42,7 +42,25 @@ public class AjaxController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String command=request.getParameter("command");
             ElectiveManager manager = Factory.getInstance().getManager();
-            String p1 = request.getParameter("poolA");
+            if(command.equals("gemStudent"))
+            {
+                String stuId=request.getParameter("stuId");
+                String subjId = request.getParameter("subjId");
+                if(subjId.equals("poolAmain") || subjId.equals("poolBmain"))
+                {
+                    out.println("Not updated");
+                }
+                else
+                {
+                    int studentId=Integer.parseInt(stuId);
+                    int subjectId = Integer.parseInt(subjId);
+                    manager.addSudentsInSubject(studentId, subjectId);
+                    out.println("updated");
+                }
+            }
+            else
+            {
+                String p1 = request.getParameter("poolA");
                 System.out.println(p1);
                 String p2 = request.getParameter("poolB");
                 System.out.println(p2);
@@ -165,6 +183,7 @@ public class AjaxController extends HttpServlet {
                     manager.savePools(pool1Array, pool2Array);
                     out.println("saved");
                     break;
+            }
             }
         } finally {
             out.close();
