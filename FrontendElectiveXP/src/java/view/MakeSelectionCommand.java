@@ -33,8 +33,10 @@ class MakeSelectionCommand extends TargetCommand {
             int subjectId = Integer.parseInt(request.getParameter(es.getId() + ""));
                 
             Factory.getInstance().getManager().updateElectiveSubjectRound1(subjectId, "yes");
+                        String selectedSubjectIDer =  Integer.toString(subjectId);
+
+            request.setAttribute("end", selectedSubjectIDer);
             }
-            
         }
         
         return super.execute(request); //To change body of generated methods, choose Tools | Templates.

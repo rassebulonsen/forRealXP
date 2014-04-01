@@ -38,28 +38,6 @@
                 });
             });
 
-            jQuery.validator.addMethod("unique", function(value, element, params) {
-                var prefix = params;
-                var selector = jQuery.validator.format("[name!='{0}'][name^='{1}'][unique='{1}']", element.name, prefix);
-                var matches = new Array();
-                $(selector).each(function(index, item) {
-                    if (value == $(item).val()) {
-                        matches.push(item);
-                    }
-                });
-
-                return matches.length == 0;
-            }, "Value is not unique.");
-
-            jQuery.validator.classRuleSettings.unique = {
-                unique: true
-            };
-            $("#selectSubjects").validate();
-
-            $("#makechoise").click(function() {
-                $("#selectSubjects").valid();
-            });
-
             var prev = -1;
             $("select").change(function() {
                 if ($(this).val() > -1) {
@@ -71,13 +49,6 @@
             }).focus(function() {
                 previous = $(this).val();
             });
-
-//function selectedremoveFirstPri1()
-//{
-////    var list1 = document.getElementById("firstpri1");
-////    var index = list1.options[list1.selectedIndex];
-//    alert("Test");
-//}
         </script>
     </head>
     <body>
@@ -95,40 +66,32 @@
                 <p style="color: red">${error}</p>
                 <p style="display: inline">First priority(1)</p>
                 <select name="firstpri1" onchange="callSave(this);">
-                    <option value="-1">Vælg fag</option>
+                    <option value="-1">Choice subject</option>
                     <c:forEach items="${subjects}" var="subject">
                         <option value="${subject.id}">${subject.name}</option>
                     </c:forEach>
                 </select>
                 <p style="display: inline">First priority(2)</p>
                 <select name="firstpri2" onchange="callSave(this);">
-                    <option value="-1">Vælg fag</option>
+                    <option value="-1">Choice subject</option>
                     <c:forEach items="${subjects}" var="subject">
                         <option value="${subject.id}">${subject.name}</option>
                     </c:forEach>
                 </select>
                 <p style="display: inline">Second priority(1)</p>
                 <select name="secondpri1" onchange="callSave(this);">
-                    <option value="-1">Vælg fag</option>
+                    <option value="-1">Choice subject</option>
                     <c:forEach items="${subjects}" var="subject">
                         <option value="${subject.id}">${subject.name}</option>
                     </c:forEach>
                 </select>
                 <p style="display: inline">Second priority(2)</p>
                 <select name="secondpri2" onchange="callSave(this);">
-                    <option value="-1">Vælg fag</option>
+                    <option value="-1">Choice subject</option>
                     <c:forEach items="${subjects}" var="subject">
                         <option value="${subject.id}">${subject.name}</option>
                     </c:forEach>
                 </select>
-                <!--            <p style="display: inline">First priority(1)</p>
-                            <input type="text" name="firstpri1" value="{firstpri1}" unique="currency" onkeypress="return onlyNumbers();">
-                            <p style="display: inline">First priority(2)</p>
-                            <input type="text" name="firstpri2" value="{firstpri2}" unique="currency" onkeypress="return onlyNumbers();">
-                            <p style="display: inline">Second priority(1)</p>
-                            <input type="text" name="secondpri1" value="{secondpri1}" unique="currency" onkeypress="return onlyNumbers();">
-                            <p style="display: inline">Second priority(2)</p>
-                            <input type="text" name="secondpri2" value="{secondpri2}" unique="currency" onkeypress="return onlyNumbers();"></br>-->
                 <input type="submit" name="makeChoises" id="makechoise" value="Make choises">
 
             </form>

@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>You have chosen subjects ..............</h1>
+         ${end}
     </body>
 </html>

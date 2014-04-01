@@ -96,24 +96,6 @@ class MakeChoisesCommand extends TargetCommand {
 
                 request.setAttribute("lol", selectedSubjectIDer);
 
-                try {
-//			String content = firstChoise + ", " + secondChoise + ", " + thirdChoise + ", " + fourthChoise;
-                    String content = selectedSubjectIDer;
-                    File file = new File("subjects.txt");
-
-                    if (!file.exists()) {
-                        file.createNewFile();
-                    }
-                    FileWriter fw = new FileWriter(file.getAbsoluteFile());
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    bw.write(content);
-                    bw.close();
-
-                    System.out.println("Done");
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             } else {
                 request.setAttribute("error",
                         "You have chosen some id's that are not in the list, please go back and chose some id's that exists in table .....");
