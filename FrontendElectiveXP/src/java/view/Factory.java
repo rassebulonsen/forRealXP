@@ -34,6 +34,7 @@ public class Factory {
 
         commands.put("CreateNewSubjectCommand", new CreateNewSubjectCommand("elective_selection.jsp"));
         commands.put("MakeSelectionCommand", new MakeSelectionCommand("elective_selection_end.jsp"));
+            commands.put("makeStudentSubjectList", new StudentListCommand("studentList.jsp"));
     }
 
     public static Factory getInstance() {

@@ -9,6 +9,7 @@ import electivexp.dto.ElectiveSubjectSummary;
 import electivexp.dto.PrioritiesInfoDTO;
 import static control.ElectiveAssembler.*;
 import electivexp.dto.StudentInfoDTO;
+import electivexp.dto.StudentListInSubjectDTO;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Stateless;
@@ -35,8 +36,9 @@ public class NewSessionBean implements ElectiveManager {
         Collection<Student> students = em.createNamedQuery("Student.findAll").getResultList();
 
         for (Student stu : students) {
-            if (stu.getStuid() == stuId)
+            if (stu.getStuid() == stuId) {
                 isTheIdInTheDB = true;
+            }
         }
 
         if (!isTheIdInTheDB) {
@@ -321,8 +323,8 @@ public class NewSessionBean implements ElectiveManager {
 
     @Override
     public void updateElectiveSubjectRound1(int sujectId, String yesOrNo) {
-            Electivesubject es = em.find(Electivesubject.class, sujectId);
-            es.setRound1(yesOrNo);
+        Electivesubject es = em.find(Electivesubject.class, sujectId);
+        es.setRound1(yesOrNo);
     }
 
     @Override
@@ -337,5 +339,55 @@ public class NewSessionBean implements ElectiveManager {
         Collection<Electivesubject> subjects = em.createNamedQuery("Electivesubject.findByRound2").getResultList();
         System.err.println("#Elective = " + subjects.size());
         return createElectiveSummaries(subjects);
+    }
+
+    @Override
+    public void addSudentsInSubject(int studentId, int subjectId) {
+
+    }
+
+    @Override
+    public Collection<StudentListInSubjectDTO> getStudentListInSubjectsFromPoolA() {
+        Pool poolA = em.find(Pool.class, "A");
+        Collection<Electivesubject> subjects = poolA.getElectivesubjectCollection();
+        return getStudentListInSubjects(subjects);
+    }
+
+    @Override
+    public Collection<StudentListInSubjectDTO> getStudentListInSubjectsFromPoolB() {
+        Pool poolB = em.find(Pool.class, "B");
+        Collection<Electivesubject> subjects = poolB.getElectivesubjectCollection();
+        return getStudentListInSubjects(subjects);
+    }
+
+    public Collection<StudentListInSubjectDTO> getStudentListInSubjects(Collection<Electivesubject> subjects) {
+        Collection<StudentListInSubjectDTO> studentList = new ArrayList<>();
+        for (Electivesubject subject : subjects) {
+            studentList.add(new StudentListInSubjectDTO(subject.getSubjectid(), subject.getName()));
+        }
+        Collection<Student> students = em.createNamedQuery("Student.findAll").getResultList();
+        for (Student student : students) {
+            StudentRound2 sRound2 = em.find(StudentRound2.class, student.getStuid());
+            int subjectId = 2;
+            if (sRound2 != null) {
+                for (Electivesubject subject : subjects) {
+                    if (sRound2.getFirstpripoolaelectivesubjid() == subject.getSubjectid()
+                            || sRound2.getFirstpripoolb1electivesubjid() == subject.getSubjectid()) {
+                        subjectId = subject.getSubjectid();
+                        break;
+                    } else if (sRound2.getSecondpripoolaelectivesubjid() == subject.getSubjectid()
+                            || sRound2.getSecondpripoolbelectivesubjid() == subject.getSubjectid()) {
+                        subjectId = subject.getSubjectid();
+                    }
+                }
+                for (StudentListInSubjectDTO list : studentList) {
+                    if (subjectId == list.getSubjId()) {
+                        list.addStudents(createStudentInfoDtoWithRound2(student, sRound2, subjects));
+                        break;
+                    }
+                }
+            }
+        }
+        return studentList;
     }
 }

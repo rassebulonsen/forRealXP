@@ -7,6 +7,7 @@ package backend;
 import electivexp.ElectiveManager;
 import electivexp.dto.ElectiveSubjectSummary;
 import electivexp.dto.PrioritiesInfoDTO;
+import electivexp.dto.StudentListInSubjectDTO;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -256,6 +257,21 @@ public class DummyBackend implements ElectiveManager{
 
     @Override
     public Collection<ElectiveSubjectSummary> getSubjectsRound2() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addSudentsInSubject(int studentId, int subjectId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<StudentListInSubjectDTO> getStudentListInSubjectsFromPoolA() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<StudentListInSubjectDTO> getStudentListInSubjectsFromPoolB() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -7,6 +7,7 @@ package electivexp;
 import electivexp.dto.ElectiveSubjectSummary;
 import electivexp.dto.PoolSubjectSummary;
 import electivexp.dto.PrioritiesInfoDTO;
+import electivexp.dto.StudentListInSubjectDTO;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Remote;
@@ -39,4 +40,9 @@ public interface ElectiveManager {
     
     Collection<ElectiveSubjectSummary> getSubjectsRound1();
     Collection<ElectiveSubjectSummary> getSubjectsRound2();
+    
+    void addSudentsInSubject(int studentId, int subjectId);
+    //ArrayList<StudentListInSubjectDTO> getStudentListInSubjects();
+    Collection<StudentListInSubjectDTO> getStudentListInSubjectsFromPoolA();
+    Collection<StudentListInSubjectDTO> getStudentListInSubjectsFromPoolB();
 }

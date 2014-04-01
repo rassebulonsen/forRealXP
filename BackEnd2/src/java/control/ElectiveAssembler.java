@@ -10,6 +10,7 @@ import java.util.Collection;
 import model.Electivesubject;
 import model.Pool;
 import model.Student;
+import model.StudentRound2;
 
 /**
  *
@@ -51,5 +52,39 @@ public class ElectiveAssembler {
                 student.getSecondpri1electivesubjid()+"", 
                 student.getSecondpri2electivesubjid()+""
                 );
+    }
+    public static StudentInfoDTO createStudentInfoDtoWithRound2(Student student, StudentRound2 s2,Collection<Electivesubject> subjects)
+    {
+        if(student == null || s2 ==null) return null;
+        String first1Name="",first2Name="",second1Name="",second2Name="";
+                for(Electivesubject subject : subjects)
+                {
+                    if(subject.getSubjectid()== s2.getFirstpripoolaelectivesubjid())
+                    {
+                        first1Name=subject.getName();
+                    }
+                    if(subject.getSubjectid()== s2.getFirstpripoolb1electivesubjid())
+                    {
+                        first2Name=subject.getName();
+                    }
+                    if(subject.getSubjectid()== s2.getSecondpripoolaelectivesubjid())
+                    {
+                        second1Name=subject.getName();
+                    }
+                    if(subject.getSubjectid()== s2.getSecondpripoolbelectivesubjid())
+                    {
+                        second2Name=subject.getName();
+                    }
+                }
+        return new StudentInfoDTO(
+                student.getStuid(), 
+                student.getPerson().getFname(),
+                student.getPerson().getLname(), 
+                first1Name, 
+                first2Name, 
+                second1Name, 
+                second2Name
+                );
+     
     }
 }
